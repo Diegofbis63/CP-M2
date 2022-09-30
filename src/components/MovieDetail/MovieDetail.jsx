@@ -1,4 +1,6 @@
 import React from "react";
+import * as actions from "../../redux/actions/index";
+import { useDispatch, useSelector } from "react-redux";
 
 // Importar las actions como Object Modules, sino los test no funcionarán!
 
@@ -10,10 +12,21 @@ import React from "react";
 
 const MovieDetail = (props) => {
 
+  const dispatch = useDispatch();
+  let id = props.match.params.id;
+
+  React.useEffect(() => {
+    dispatch(actions.getMovieDetail(id))
+  },[id, dispatch])
+
+  let movies = useSelector((state) => state.movieDetail);
 
   return (
     <div>
-      
+      <h1>{movies.name}</h1>
+      <h4>{movies.director}</h4>
+      <h4>{movies.description}</h4>
+      <h4>{movies.releaseYear}</h4>
     </div>
   );
 };
