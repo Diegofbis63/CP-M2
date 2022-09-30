@@ -17,8 +17,12 @@ const MovieCard = (props) => {
   }
   return (
     <div className="card">
-      <button onClick={onDelete(props.id)}>X</button>
+      <button onClick={onDelete(props.id)}>x</button>
       <Link to={`/movie/${props.id}`}></Link>
+      <h3>{props.name}</h3>
+      <img src={props.image} alt={props.name} />
+      <p>ReleaseYear: {props.releaseYear}</p>
+      <p>Director: {props.director}</p>
     </div>
   );
 };
