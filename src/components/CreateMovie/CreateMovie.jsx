@@ -1,5 +1,6 @@
 import React from "react";
-import { ProgressPlugin } from "webpack";
+import { useDispatch } from "react-redux";
+import * as actions from "../../redux/actions/index";
 
 // Importar las actions como Object Modules, sino los test no funcionarán!
 
@@ -10,8 +11,78 @@ import { ProgressPlugin } from "webpack";
 
 const CreateMovie = (props) => {
 
+  const dispatch = useDispatch();
+
+  const [movie, setCharacter] = React.useState({
+    
+    description: "",
+    name: "",
+    director: "",
+    releaseYear: 0,
+    
+  });
+
+  const handleInputChange = function (e) {
+    e.preventDefault();
+    if (e.target.name === 'movie'){
+      setCharacter({
+        ...movie,
+        movie :{
+          name: e.target.value
+        },
+      });
+    }
+    else{
+      setCharacter({
+        ...movie,
+        [e.target.name]: e.target.value,
+      });
+    }
+
+  };
+
+  const handleOnSubmit = function (e){
+    e.preventDefault();
+    dispatch(actions.createMovie(movie));
+  }
+
   return (
     <div>
+      <form onSubmit={handleOnSubmit}>
+        <label name="name">Name: </label>
+        <input
+          type="text"
+          name="name"
+          value={movie.name}
+          onChange={handleInputChange}
+        />
+
+        <label name="name">ReleaseYear: </label>
+        <input
+          type="number"
+          name="releaseYear"
+          value={movie.name}
+          onChange={handleInputChange}
+        />
+
+        <label name="name">Description: </label>
+        <textarea
+          type="text"
+          name="description"
+          value={movie.description}
+          onChange={handleInputChange}
+        />
+
+        <label name="name">Director: </label>
+        <input
+          
+          type="text"
+          name="director"
+          value={movie.director}
+          onChange={handleInputChange}
+        />
+        <button type="submit">Create Movie</button>
+      </form>
            
     </div>
   );
