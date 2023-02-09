@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import MovieCard from "../MovieCard/MovieCard";
 import React, { Component } from "react";
 import * as actions from "../../redux/actions/index";
-
+import mainImage from "./img-cp2/main-image-cp2.jpg"
 
 
 // Importar las actions como Object Modules, sino los test no funcionarán!
@@ -22,7 +22,7 @@ export class Home extends Component {
         <h1>Henry Movies</h1>
         <h3>Movies</h3>
         <h4>Checkpoint M2</h4>
-        <img src="main-image-cp2.jpg" alt="henry-movies-logo" />
+        <img src="./img-cp2/main-image-cp2.jpg" alt="henry-movies-logo" />
         {this.props.movies?.map((e) => (
           <MovieCard
             id={e.id}
